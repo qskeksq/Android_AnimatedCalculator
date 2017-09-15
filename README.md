@@ -15,7 +15,6 @@
 ![result](https://github.com/qskeksq/Calculator/blob/master/pic/%ED%81%AC%EA%B8%B0%EB%B3%80%ED%99%98_result.png)
 ![anim](https://github.com/qskeksq/Calculator/blob/master/pic/%ED%81%AC%EA%B8%B0%EB%B3%80%ED%99%98_anim.gif)
 
-
 #### 연산식 분리
 ```java
 String[] splitList = sentence.split("(?<=[*/+-])|(?=[*/+-])");
