@@ -11,9 +11,9 @@
     - View의 속성으로부터 Dummy Button 값 설청
     
     
-![](https://github.com/qskeksq/Calculator/blob/master/pic/%ED%81%AC%EA%B8%B0%EB%B3%80%ED%99%98_result.png)
 ![sentence](https://github.com/qskeksq/Calculator/blob/master/pic/%ED%81%AC%EA%B8%B0%EB%B3%80%ED%99%98_sentence.png)
 ![result](https://github.com/qskeksq/Calculator/blob/master/pic/%ED%81%AC%EA%B8%B0%EB%B3%80%ED%99%98_result.png)
+![anim]()
 
 
 #### 연산식 분리
