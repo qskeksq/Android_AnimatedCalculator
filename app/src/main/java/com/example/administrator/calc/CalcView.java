@@ -1,9 +1,16 @@
 package com.example.administrator.calc;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.graphics.Typeface;
+import android.support.constraint.ConstraintLayout;
 import android.view.View;
+import android.view.animation.BounceInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Space;
 import android.widget.Toast;
 
 import com.example.administrator.calc.design.ICalc;
@@ -21,6 +28,8 @@ public class CalcView implements IView {
     /**
      * 위젯, 자원
      */
+    private Space space;
+    private ConstraintLayout layout;
     private EditText resultWindow,sentenceWindow;
     private Button btnAC,btnLeftParan,btnRightParan,btnDelete,btnMulti,btnDot,btnEqual,btnDiv,btnSubs;
     private Button btnSeven,btnEight,btnNine,btnAdd,btnFour,btnFive,btnSix,btnOne,btnTwo,btnThree,btnZero;
@@ -39,6 +48,8 @@ public class CalcView implements IView {
      * 위젯 초기화
      */
     private void initView() {
+        space = activity.findViewById(R.id.space);
+        layout = activity.findViewById(R.id.stage);
         btnAC = activity.findViewById(R.id.btnAC);
         btnLeftParan = activity.findViewById(R.id.btnLeftParan);
         btnRightParan = activity.findViewById(R.id.btnRightParan);
@@ -97,16 +108,16 @@ public class CalcView implements IView {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-                case R.id.btnZero: append("0"); break;
-                case R.id.btnOne:  append("1"); break;
-                case R.id.btnTwo:  append("2"); break;
-                case R.id.btnThree:append("3"); break;
-                case R.id.btnFour: append("4"); break;
-                case R.id.btnFive: append("5"); break;
-                case R.id.btnSix:  append("6"); break;
-                case R.id.btnSeven:append("7"); break;
-                case R.id.btnEight:append("8"); break;
-                case R.id.btnNine: append("9"); break;
+                case R.id.btnZero: append("0"); fly(btnZero);   break;
+                case R.id.btnOne:  append("1"); fly(btnOne);    break;
+                case R.id.btnTwo:  append("2"); fly(btnTwo);    break;
+                case R.id.btnThree:append("3"); fly(btnThree);  break;
+                case R.id.btnFour: append("4"); fly(btnFour);   break;
+                case R.id.btnFive: append("5"); fly(btnFive);   break;
+                case R.id.btnSix:  append("6"); fly(btnSix);    break;
+                case R.id.btnSeven:append("7"); fly(btnSeven);  break;
+                case R.id.btnEight:append("8"); fly(btnEight);  break;
+                case R.id.btnNine: append("9"); fly(btnNine);   break;
             }
         }
     };
@@ -245,4 +256,88 @@ public class CalcView implements IView {
         resultWindow.setText("");
     }
 
+
+
+    public void fly(Button button){
+
+        // 날아가야 할 좌표
+        float toX = space.getX();
+        float toY = space.getY();
+
+        // 1. 버튼 생성
+        final Button obj = new Button(activity);
+
+        // 2. 버튼의 초기 좌표
+        float x = button.getX();
+        float y = button.getY();
+
+        // 3. 버튼의 위치 지정
+        obj.setX(x);
+        obj.setY(y);
+
+        // 4. 버튼 속성 지정
+        ConstraintLayout.LayoutParams cp = new ConstraintLayout.LayoutParams(btnOne.getWidth(),btnOne.getHeight());
+        obj.setBackground(activity.getResources().getDrawable(R.drawable.btn_num));
+        obj.setTypeface(Typeface.SANS_SERIF);
+        obj.setText(button.getText());
+        obj.setLayoutParams(cp);
+        obj.setTextSize(30);
+
+        // 5. 뷰에 추가
+        layout.addView(obj);
+
+//        // 이 경우는 가장 상위 부모와 현재 내 부모가 다를 경우 최상위 부모뷰에서 내 부모뷰의 위치를 구하기 위함
+//        ConstraintLayout parent = (ConstraintLayout) btnOne.getParent();
+//        parent.getX();
+
+
+//        아나 이거는 왜 안 되는거냐. 왜 존재하는거지
+//        DisplayMetrics displayMetrics = new DisplayMetrics();
+//        activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+//
+//        Log.e("크기 확인",""+displayMetrics.widthPixels);
+//        Log.e("크기 확인",""+displayMetrics.heightPixels);
+//        Log.e("좌표 확인 : x",""+x);
+//        Log.e("좌표 확인 : y",""+y);
+//        Log.e("좌표 확인 : tox",""+toX);
+//        Log.e("좌표 확인 : toy",""+toY);
+//        Log.e("버튼 크기",""+btnOne.getWidth());
+//        Log.e("버튼 크기",""+btnOne.getHeight());
+
+        // 애니메이션으로 날려주기
+        ObjectAnimator transX = ObjectAnimator.ofFloat(
+                obj, "x", toX
+        );
+
+        ObjectAnimator transY = ObjectAnimator.ofFloat(
+                obj, "y", toY
+        );
+
+        AnimatorSet set = new AnimatorSet();
+        set.playTogether(transX,transY);
+        set.setInterpolator(new BounceInterpolator());
+        set.setDuration(3000);
+        set.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                layout.removeView(obj);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
+            }
+        });
+        set.start();
+    }
 }
