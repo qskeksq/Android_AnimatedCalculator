@@ -13,7 +13,7 @@
     
 ![](https://github.com/qskeksq/Calculator/blob/master/pic/sentence.png)
 ![](https://github.com/qskeksq/Calculator/blob/master/pic/result.png)
-![](https://github.com/qskeksq/Calculator/blob/master/pic/anim.gif)
+![](https://github.com/qskeksq/Calculator/blob/master/pic/%ED%81%AC%EA%B8%B0%EB%B3%80%ED%99%98_anim.gif)
 
 
 #### 연산식 분리
