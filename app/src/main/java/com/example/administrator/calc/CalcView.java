@@ -127,13 +127,13 @@ public class CalcView implements IView {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-                case R.id.btnAdd:   append("+"); break;
-                case R.id.btnSubs:  append("-"); break;
-                case R.id.btnMulti: append("*"); break;
-                case R.id.btnDiv:   append("/"); break;
-                case R.id.btnDot:        append("."); break;
-                case R.id.btnLeftParan:  append("("); break;
-                case R.id.btnRightParan: append(")"); break;
+                case R.id.btnAdd:   append("+"); fly(btnAdd);   break;
+                case R.id.btnSubs:  append("-"); fly(btnSubs);  break;
+                case R.id.btnMulti: append("*"); fly(btnMulti); break;
+                case R.id.btnDiv:   append("/"); fly(btnDiv);   break;
+                case R.id.btnDot:        append("."); fly(btnDot);          break;
+                case R.id.btnLeftParan:  append("("); fly(btnLeftParan);    break;
+                case R.id.btnRightParan: append(")"); fly(btnRightParan);   break;
             }
         }
     };
@@ -157,6 +157,7 @@ public class CalcView implements IView {
                     break;
                 case R.id.btnDelete:
                     delete();
+                    fly(btnDelete);
                     break;
             }
         }
@@ -256,8 +257,10 @@ public class CalcView implements IView {
         resultWindow.setText("");
     }
 
-
-
+    /**
+     * 같은 모양의 버튼이 입력창까지 날아간 후 소멸
+     * @param button
+     */
     public void fly(Button button){
 
         // 날아가야 할 좌표
@@ -277,7 +280,8 @@ public class CalcView implements IView {
 
         // 4. 버튼 속성 지정
         ConstraintLayout.LayoutParams cp = new ConstraintLayout.LayoutParams(btnOne.getWidth(),btnOne.getHeight());
-        obj.setBackground(activity.getResources().getDrawable(R.drawable.btn_num));
+        obj.setBackground(button.getBackground());
+        obj.setTextColor(button.getCurrentTextColor());
         obj.setTypeface(Typeface.SANS_SERIF);
         obj.setText(button.getText());
         obj.setLayoutParams(cp);
