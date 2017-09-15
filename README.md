@@ -9,6 +9,12 @@
 - 애니메이션
     - ObjectAnimator
     - View의 속성으로부터 Dummy Button 값 설청
+    
+    
+![](https://github.com/qskeksq/Calculator/blob/master/pic/sentence.png)
+![](https://github.com/qskeksq/Calculator/blob/master/pic/result.png)
+![](https://github.com/qskeksq/Calculator/blob/master/pic/anim.gif)
+
 
 #### 연산식 분리
 ```java
