@@ -11,8 +11,8 @@
     - View의 속성으로부터 Dummy Button 값 설청
     
     
+![](https://github.com/qskeksq/Calculator/blob/master/pic/%ED%81%AC%EA%B8%B0%EB%B3%80%ED%99%98_result.png)
 ![](https://github.com/qskeksq/Calculator/blob/master/pic/sentence.png)
-![](https://github.com/qskeksq/Calculator/blob/master/pic/result.png)
 ![](https://github.com/qskeksq/Calculator/blob/master/pic/%ED%81%AC%EA%B8%B0%EB%B3%80%ED%99%98_anim.gif)
 
 
